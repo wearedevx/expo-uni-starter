@@ -9,7 +9,7 @@ import Button from "./Button";
 import Link from "./Link";
 import FlashBox from "./FlashBox";
 
-export function LoginBase({
+export function SignUpBase({
   classes,
   onSubmit,
   submissionError,
@@ -123,20 +123,6 @@ export function LoginBase({
           error={errors && errors.username && errors.password.message}
           inputRef={passwordRef}
           type="password"
-          after={
-            <Link
-              onPress={() =>
-                navigation.push("forgot-password", {
-                  username: usernameValue
-                })
-              }
-              classes={{
-                text: cls`text-xs text-right`
-              }}
-            >
-              Mot de passe oublié ?
-            </Link>
-          }
         />
         <View style={cls`w-full`}>
           <Button
@@ -144,14 +130,14 @@ export function LoginBase({
             disabled={submissionLoading}
             loading={submissionLoading}
           >
-            Se connecter
+            Créer un compte
           </Button>
         </View>
       </View>
 
       <View style={cls`w-full m-y2`}>
-        <Button outlined onPress={() => navigation.navigate("signup")}>
-          Créer un compte
+        <Button outlined onPress={() => navigation.navigate("signin")}>
+          Annuler
         </Button>
       </View>
     </View>

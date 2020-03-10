@@ -23,6 +23,7 @@ export default function Input({
   classes,
   label,
   autoFocus,
+  value,
   onValueChange,
   onSubmitEditing,
   placeholder,
@@ -44,6 +45,7 @@ export default function Input({
         textContentType={type}
         secureTextEntry={isSecure}
         style={cls`${styles.input} ${error && styles.errorInput}`}
+        value={value}
         onChangeText={onValueChange}
         placeholder={placeholder}
         placeholderTextColor={color.gray400}

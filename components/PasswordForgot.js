@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { classes as cls, View, Text } from "../tw";
 
@@ -9,7 +9,7 @@ import Button from "./Button";
 import Link from "./Link";
 import FlashBox from "./FlashBox";
 
-export function LoginBase({
+export function PasswordForgotBase({
   classes,
   onSubmit,
   submissionError,
@@ -24,10 +24,10 @@ export function LoginBase({
   classes.helper = classes.helper || [];
   classes.forgottenText = classes.forgottenText || [];
 
-  // const usernameRef = useRef(null);
-  const passwordRef = useRef(null);
-  // const fgtPasswd = useRef(null);
-
+  const route = useRoute();
+  const params = route.params || {
+    username: ""
+  };
   const {
     register,
     handleSubmit,
@@ -35,14 +35,14 @@ export function LoginBase({
     getValues,
     errors,
     clearError
-  } = useForm();
-  const { username: usernameValue, password: passwordValue } = getValues();
+  } = useForm({
+    defaultValues: {
+      username: params.username || ""
+    }
+  });
+  const { username: usernameValue } = getValues();
 
-  const onUsernameSubmit = useCallback(() => {
-    passwordRef.current.focus();
-  }, [passwordRef.current]);
-
-  const onPasswordSubmit = useCallback(
+  const onUsernameSubmit = useCallback(
     data => {
       onSubmit(data);
     },
@@ -53,39 +53,34 @@ export function LoginBase({
     register("username", {
       required: `Un nom d'utilisateur est requis`
     });
-    register("password", {
-      required: "Un mot de passe est requis"
-    });
   }, [register]);
 
-  const submit = useMemo(() => handleSubmit(onPasswordSubmit), [
+  const submit = useMemo(() => handleSubmit(onUsernameSubmit), [
     handleSubmit,
-    onPasswordSubmit
+    onUsernameSubmit
   ]);
 
   const navigation = useNavigation();
 
   useEffect(() => {
     const listener = navigation.addListener("focus", () => {
-      setValue("username", "");
-      setValue("password", "");
+      setValue("username", params.username || "");
       clearError();
       clearSubmissionError();
     });
 
     return () => navigation.removeListener("focus", listener);
-  }, [navigation]);
+  }, [navigation, route]);
 
   useEffect(() => {
     const listener = navigation.addListener("blur", () => {
-      setValue("username", "");
-      setValue("password", "");
+      setValue("username", params.username || "");
       clearError();
       clearSubmissionError();
     });
 
     return () => navigation.removeListener("blur", listener);
-  }, [navigation]);
+  }, [navigation, route]);
 
   return (
     <View style={[...cls`justify-center items-center`, ...classes.container]}>
@@ -109,49 +104,20 @@ export function LoginBase({
           onSubmitEditing={onUsernameSubmit}
           error={errors && errors.username && errors.username.message}
         />
-        <Input
-          classes={classes}
-          label="Mot de passe"
-          placeholder="Mot de passe"
-          value={passwordValue}
-          onValueChange={value => {
-            clearError();
-            clearSubmissionError();
-            setValue("password", value);
-          }}
-          onSubmitEditing={submit}
-          error={errors && errors.username && errors.password.message}
-          inputRef={passwordRef}
-          type="password"
-          after={
-            <Link
-              onPress={() =>
-                navigation.push("forgot-password", {
-                  username: usernameValue
-                })
-              }
-              classes={{
-                text: cls`text-xs text-right`
-              }}
-            >
-              Mot de passe oublié ?
-            </Link>
-          }
-        />
         <View style={cls`w-full`}>
           <Button
             onPress={!submissionLoading && submit}
             disabled={submissionLoading}
             loading={submissionLoading}
           >
-            Se connecter
+            Envoyer
           </Button>
         </View>
       </View>
 
       <View style={cls`w-full m-y2`}>
-        <Button outlined onPress={() => navigation.navigate("signup")}>
-          Créer un compte
+        <Button outlined onPress={() => navigation.navigate("signin")}>
+          Annuler
         </Button>
       </View>
     </View>
