@@ -1,6 +1,8 @@
 import create from "zustand";
 import { immer, persist } from "../middlewares";
 
+import { reset } from "../index";
+
 // user store
 // TODO: move each store in its own module
 const userStore = create(
@@ -11,10 +13,17 @@ const userStore = create(
       setToken: token =>
         set(state => {
           state.token = token;
-        })
+        }),
+      resetApp: () => {
+        set(state => {
+          state.token = null;
+        });
+        reset();
+      }
     }))
   )
 );
+console.log("userStore", userStore);
 
 export const useUser = userStore[0];
 export const userApi = userStore[1];

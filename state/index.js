@@ -5,6 +5,7 @@ import { AsyncStorage } from "react-native";
 
 import { immer } from "./middlewares";
 import storeApis from "./stores";
+console.log("storeApis", storeApis);
 
 // load state from local/async storage
 async function loadState(key) {
@@ -55,6 +56,18 @@ export async function initialize() {
   dataStateStoreApi.setState({
     loading: false,
     loaded: true
+  });
+}
+
+export async function reset() {
+  dataStateStoreApi.setState({
+    loading: true
+  });
+
+  await AsyncStorage.multiRemove(Object.keys(storeApis));
+
+  dataStateStoreApi.setState({
+    loading: false
   });
 }
 

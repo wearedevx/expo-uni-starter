@@ -24,9 +24,7 @@ export default function SignupPage() {
   }, [setError]);
 
   return (
-    <SafeAreaView
-      style={cls`flex-1 w-full flex-col justify-center items-center`}
-    >
+    <View style={cls`flex-1 w-full flex-col justify-center items-center`}>
       <View style={cls`w64`}>
         <Title>Créez votre compte</Title>
         <SignUpBase
@@ -38,6 +36,6 @@ export default function SignupPage() {
           submissionLoading={loading}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }

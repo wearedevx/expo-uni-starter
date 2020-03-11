@@ -1,16 +1,27 @@
-import React, { useRef, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { Animated } from "react-native";
 import { useForm } from "react-hook-form";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-import { classes as cls, View, Text } from "../tw";
+import { classes as cls, View, Text, AnimatedView } from "../tw";
 
 import Input from "./Input";
 import Button from "./Button";
 import Link from "./Link";
 import FlashBox from "./FlashBox";
 
+PasswordForgotBase.defaultProps = {
+  classes: {},
+  sent: false,
+  onSubmit: () => {},
+  submissionError: null,
+  clearSubmissionError: () => {},
+  submissionLoading: false
+};
+
 export function PasswordForgotBase({
   classes,
+  sent,
   onSubmit,
   submissionError,
   clearSubmissionError,
@@ -23,6 +34,29 @@ export function PasswordForgotBase({
   classes.input = classes.input || [];
   classes.helper = classes.helper || [];
   classes.forgottenText = classes.forgottenText || [];
+
+  const [formOpacity] = useState(new Animated.Value(1));
+  const [okMessageOpacity] = useState(new Animated.Value(0));
+  const [hideForm, setHideform] = useState(false);
+  console.log("hideForm", hideForm);
+
+  useEffect(() => {
+    console.log("sent", sent);
+    Animated.parallel([
+      Animated.timing(formOpacity, {
+        toValue: sent ? 0 : 1,
+        duration: 300,
+        useNativeDriver: true
+      }),
+      Animated.timing(okMessageOpacity, {
+        toValue: sent ? 1 : 0,
+        duration: 300,
+        useNativeDriver: true
+      })
+    ]).start(() => {
+      setHideform(sent);
+    });
+  }, [sent, formOpacity, okMessageOpacity]);
 
   const route = useRoute();
   const params = route.params || {
@@ -83,43 +117,71 @@ export function PasswordForgotBase({
   }, [navigation, route]);
 
   return (
-    <View style={[...cls`justify-center items-center`, ...classes.container]}>
-      <View style={cls`w-full`}>
-        {submissionError && (
-          <FlashBox.Error>
-            Vérifiez votre nom d'utilisateur ou votre mot de passe
-          </FlashBox.Error>
-        )}
-        <Input
-          autoFocus
-          classes={classes}
-          label="Nom d'utilisateur"
-          placeholder="Nom d'utilisateur"
-          value={usernameValue}
-          onValueChange={value => {
-            clearError();
-            clearSubmissionError();
-            setValue("username", value);
-          }}
-          onSubmitEditing={onUsernameSubmit}
-          error={errors && errors.username && errors.username.message}
-        />
+    <View style={[...cls``, ...classes.container]}>
+      {hideForm == false && (
+        <AnimatedView
+          style={cls`
+          ${{
+            opacity: formOpacity,
+            zIndex: sent ? -1 : 0
+          }}`}
+        >
+          {submissionError && (
+            <FlashBox.Error>
+              Nous n'avons pu réinitiliser le mot de passe pour cet utilisateur
+            </FlashBox.Error>
+          )}
+          <Input
+            autoFocus
+            classes={classes}
+            label="Nom d'utilisateur"
+            placeholder="Nom d'utilisateur"
+            value={usernameValue}
+            onValueChange={value => {
+              clearError();
+              clearSubmissionError();
+              setValue("username", value);
+            }}
+            onSubmitEditing={onUsernameSubmit}
+            error={errors && errors.username && errors.username.message}
+          />
+          <View style={cls`w-full`}>
+            <Button
+              onPress={!submissionLoading && submit}
+              disabled={submissionLoading}
+              loading={submissionLoading}
+            >
+              Envoyer
+            </Button>
+          </View>
+          <View style={cls`w-full m-y2`}>
+            <Button outlined onPress={() => navigation.navigate("signin")}>
+              Annuler
+            </Button>
+          </View>
+        </AnimatedView>
+      )}
+      <AnimatedView
+        style={cls`w-full absolute top-0 left-0 right-0
+        ${{
+          opacity: okMessageOpacity,
+          zIndex: sent ? 0 : -1
+        }}`}
+      >
         <View style={cls`w-full`}>
-          <Button
-            onPress={!submissionLoading && submit}
-            disabled={submissionLoading}
-            loading={submissionLoading}
-          >
-            Envoyer
-          </Button>
+          <View style={cls`w-full m-y2`}>
+            <Text>
+              Vous allez très vite recevoir un e-mail contenant un lien pour
+              renouveler votre mot de passe
+            </Text>
+          </View>
+          <View style={cls`w-full m-y2`}>
+            <Button outlined onPress={() => navigation.navigate("signin")}>
+              Retour
+            </Button>
+          </View>
         </View>
-      </View>
-
-      <View style={cls`w-full m-y2`}>
-        <Button outlined onPress={() => navigation.navigate("signin")}>
-          Annuler
-        </Button>
-      </View>
+      </AnimatedView>
     </View>
   );
 }

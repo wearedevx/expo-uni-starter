@@ -9,12 +9,14 @@ import { PasswordForgotBase } from "../components/PasswordForgot";
 export default function PasswordForgotPage() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const fakeSubmit = useCallback(() => {
     setLoading(true);
 
     setTimeout(() => {
-      setError(new Error("Bad Credentials"));
+      setSent(true);
+      // setError(new Error("Bad Credentials"));
       setLoading(false);
     }, 3000);
   }, [setError, setLoading]);
@@ -24,12 +26,11 @@ export default function PasswordForgotPage() {
   }, [setError]);
 
   return (
-    <SafeAreaView
-      style={cls`flex-1 w-full flex-col justify-center items-center`}
-    >
-      <View style={cls`w64`}>
+    <View style={cls`flex-1 w-full flex-col justify-center items-center`}>
+      <View style={cls`w64 ${{ height: 300 }}`}>
         <Title>Renouvellement de mot de passe</Title>
         <PasswordForgotBase
+          sent={sent}
           color={color.blue600}
           errorColor={color.red500}
           onSubmit={fakeSubmit}
@@ -38,6 +39,6 @@ export default function PasswordForgotPage() {
           submissionLoading={loading}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { SafeAreaView } from "react-native";
 
 import { classes as cls, View, Text, color } from "../tw";
 
@@ -37,9 +36,7 @@ export default function LoginPage() {
   }, [setError]);
 
   return (
-    <SafeAreaView
-      style={cls`flex-1 w-full flex-col justify-center items-center`}
-    >
+    <View style={cls`flex-1 w-full flex-col justify-center items-center`}>
       <View style={cls`w64`}>
         <Title>Connexion</Title>
         <LoginBase
@@ -51,6 +48,6 @@ export default function LoginPage() {
           submissionLoading={loading}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
