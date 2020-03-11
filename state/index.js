@@ -1,0 +1,61 @@
+import create from "zustand";
+import shallow from "zustand";
+
+import { AsyncStorage } from "react-native";
+
+import { immer } from "./middlewares";
+import storeApis from "./stores";
+
+// load state from local/async storage
+async function loadState(key) {
+  const storedRaw = await AsyncStorage.getItem(key);
+
+  let loadedState = {};
+  if (storedRaw) {
+    try {
+      loadedState = JSON.parse(storedRaw);
+    } catch (e) {
+      e.message = `Failed to parse persited state ${key}`;
+      console.error(e);
+    }
+  }
+
+  return loadedState;
+}
+
+// app loading state
+// represents whether data from loca/async storage have been loaded or not
+const [_appLoadingState, dataStateStoreApi] = create(
+  immer(set => ({
+    loading: false,
+    loaded: false,
+    setLoading: input => set(state => (state.loading = input)),
+    setLoaded: input => set(state => (state.loaded = input))
+  }))
+);
+
+// Start loading store from local/async storage
+// To be used in a useEFfect() hook
+export async function initialize() {
+  console.log("initialize -> dataStateStoreApi", dataStateStoreApi);
+  dataStateStoreApi.setState({
+    loading: true,
+    loaded: false
+  });
+
+  const promises = Object.keys(storeApis).map(async key => {
+    let loadedData = await loadState(key);
+    console.log("initialize -> key", storeApis, key);
+
+    storeApis[key].setState(loadedData);
+  });
+
+  await Promise.all(promises);
+
+  dataStateStoreApi.setState({
+    loading: false,
+    loaded: true
+  });
+}
+
+export const useAppLoadingState = _appLoadingState;

@@ -1,23 +1,36 @@
 import React, { useState, useCallback } from "react";
 import { SafeAreaView } from "react-native";
 
-import { classes as cls, View, color } from "../tw";
+import { classes as cls, View, Text, color } from "../tw";
 
 import { Title } from "../components/typography/Title";
 import { LoginBase } from "../components/Login";
+
+import { useUser } from "../state/stores/user";
 
 export default function LoginPage() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fakeSubmit = useCallback(() => {
-    setLoading(true);
+  const setToken = useUser(({ setToken }) => setToken);
 
-    setTimeout(() => {
-      setError(new Error("Bad Credentials"));
-      setLoading(false);
-    }, 3000);
-  }, [setError, setLoading]);
+  // TODO: Replace this with an actual API call
+  const fakeSubmit = useCallback(
+    credentials => {
+      console.log("fakeSubmit -> credentials", credentials);
+      setLoading(true);
+
+      setTimeout(() => {
+        if (credentials.username == "asdf" && credentials.password == "asdf") {
+          setToken("token");
+        } else {
+          setError(new Error("Bad Credentials"));
+        }
+        setLoading(false);
+      }, 3000);
+    },
+    [setError, setLoading]
+  );
 
   const clearError = useCallback(() => {
     setError(null);
