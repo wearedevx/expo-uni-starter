@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 
 import { classes as cls, View, Text, color } from "../tw";
 
-import { Title } from "../components/typography/Title";
+import { Title } from "../components/typography";
 import { LoginBase } from "../components/Login";
 
 import { useUser } from "../state/stores/user";

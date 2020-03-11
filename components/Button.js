@@ -63,7 +63,8 @@ export default function Button({
   return (
     <Touchable onPress={!disabled ? doPress : undefined}>
       <RNView
-        style={cls`flex-row justify-center items-center ${
+        // style={cls`bg-blue-600`}
+        style={cls`w-auto flex-row justify-center items-center ${
           styles.container
         } ${disabled && styles.disabled}`}
       >

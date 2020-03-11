@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native";
 
 import { classes as cls, View, Text, color } from "../tw";
 
-import { Title } from "../components/typography/Title";
+import { Title } from "../components/typography";
 import { SignUpBase } from "../components/Signup";
 
 export default function SignupPage() {
