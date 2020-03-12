@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Ionicons } from "@expo/vector-icons";
 // import { ScrollView } from "react-native";
 
-import { classes as cls, View, ScrollView } from "../tw";
+import { classes as cls, getColor, View, ScrollView } from "../tw";
 import { useUser } from "../state/stores/user";
 
 import { Title, Subtitle, Text } from "../components/typography";
@@ -13,6 +13,7 @@ import Badge from "../components/Badge";
 import Stack from "../components/layout/Stack";
 import Checkbox from "../components/form/Checkbox";
 import Radio from "../components/form/Radio";
+import IconButton from "../components/form/IconButton";
 console.log("Radio", Radio);
 
 const appIcon = require("../assets/icon.png");
@@ -68,16 +69,12 @@ export default function HomePage() {
             </Stack>
           </Card.Content>
           <Card.TopActions>
-            <View
-              style={cls`bg-white shadow-md rounded-full w-12 h-12 justify-center items-center m-l1`}
-            >
-              <Ionicons name="md-heart-empty" size={24} />
-            </View>
-            <View
-              style={cls`bg-white shadow-md rounded-full w-12 h-12 justify-center items-center`}
-            >
-              <Ionicons name="md-clock" size={24} />
-            </View>
+            <IconButton circled icon="md-heart-empty" />
+            <IconButton
+              circled
+              icon="md-thumbs-up"
+              color={getColor("blue-600")}
+            />
           </Card.TopActions>
           <Card.Actions>
             <Card.Action>Ok</Card.Action>
@@ -95,11 +92,7 @@ export default function HomePage() {
             </Text>
           </Card.Content>
           <Card.TopActions>
-            <View
-              style={cls`bg-white shadow-md rounded-full w-12 h-12 justify-center items-center`}
-            >
-              <Ionicons name="md-heart" size={24} />
-            </View>
+            <IconButton circled icon="md-heart" color={getColor("red-500")} />
           </Card.TopActions>
           <Card.Actions>
             <Card.Action>Ok</Card.Action>
