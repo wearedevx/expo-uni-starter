@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
@@ -44,7 +44,9 @@ export default function App() {
   if (!appState.loaded) return <SplashLoader />;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+    <SafeAreaView
+      style={{ width: "100%", height: "100%", backgroundColor: "white" }}
+    >
       <NavigationContainer theme={Theme}>
         {token == null ? (
           <UserManagementNavigator

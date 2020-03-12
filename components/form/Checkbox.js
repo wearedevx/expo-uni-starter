@@ -30,7 +30,7 @@ Checkbox.defaultProps = {
   disabled: false,
   label: "",
   labelPosition: "right",
-  onCheck: () => {},
+  onCheckChange: () => {},
   error: null
 };
 
@@ -51,7 +51,7 @@ export default function Checkbox({
   disabled,
   label,
   labelPosition,
-  onCheck,
+  onCheckChange,
   error
 }) {
   const [displayChecked, setDisplayChecked] = useState(checked);
@@ -64,11 +64,12 @@ export default function Checkbox({
     <Touchable
       style={{ opacity: disabled ? 0.5 : 1 }}
       onPress={
-        !disabled &&
-        (() => {
-          setDisplayChecked(!displayChecked);
-          onCheck(!displayChecked);
-        })
+        !disabled
+          ? () => {
+              setDisplayChecked(!displayChecked);
+              onCheckChange(!displayChecked);
+            }
+          : undefined
       }
     >
       <Stack

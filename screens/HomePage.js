@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { Feather } from "@expo/vector-icons";
+// import { ScrollView } from "react-native";
 
-import { classes as cls, View } from "../tw";
+import { classes as cls, View, ScrollView } from "../tw";
 import { useUser } from "../state/stores/user";
 
 import { Title, Subtitle, Text } from "../components/typography";
@@ -11,14 +12,21 @@ import LogoutButton from "../components/LogoutButton";
 import Badge from "../components/Badge";
 import Stack from "../components/layout/Stack";
 import Checkbox from "../components/form/Checkbox";
+import Radio from "../components/form/Radio";
+console.log("Radio", Radio);
 
 const appIcon = require("../assets/icon.png");
 
 export default function HomePage() {
   const token = useUser(({ token }) => token);
 
+  const [radio, setRadio] = useState("first");
+
   return (
-    <View style={cls`flex-1 w-full h-full p4 items-start`}>
+    <ScrollView
+      style={cls`flex-1 w-full h-full`}
+      contentContainerStyle={cls`m4 items-start justify-start`}
+    >
       <Title>Compte</Title>
       <Subtitle>Paramétrage du compte</Subtitle>
       <Text>{token}</Text>
@@ -47,6 +55,16 @@ export default function HomePage() {
               <Checkbox label="This is a checkbox" />
               <Checkbox label="This is a disabled checkbox" disabled />
               <Checkbox label="This is a checkbox" error="With an error !" />
+
+              <Checkbox
+                label="This is a checkbox on the left"
+                labelPosition="left"
+              />
+
+              <Radio.Group value={radio} onValueChange={setRadio}>
+                <Radio.Button value="first" label="First Radio button" />
+                <Radio.Button value="second" label="Second Radio button" />
+              </Radio.Group>
             </Stack>
           </Card.Content>
           <Card.TopActions>
@@ -89,6 +107,6 @@ export default function HomePage() {
           </Card.Actions>
         </Card>
       </View>
-    </View>
+    </ScrollView>
   );
 }
