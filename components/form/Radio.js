@@ -20,7 +20,7 @@ const Unchecked = ({ color, disabled }) => (
 );
 const Checked = ({ color, disabled }) => (
   <Ionicons
-    name="md-checkmark-circle"
+    name="md-radio-button-on"
     color={color}
     style={iconStyle(disabled)}
     size={22}
