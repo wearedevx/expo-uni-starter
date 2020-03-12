@@ -44,7 +44,7 @@ export default function App() {
   if (!appState.loaded) return <SplashLoader />;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <NavigationContainer theme={Theme}>
         {token == null ? (
           <UserManagementNavigator
