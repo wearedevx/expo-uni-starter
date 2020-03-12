@@ -10,6 +10,7 @@ import Card from "../components/Card";
 import LogoutButton from "../components/LogoutButton";
 import Badge from "../components/Badge";
 import Stack from "../components/layout/Stack";
+import Checkbox from "../components/form/Checkbox";
 
 const appIcon = require("../assets/icon.png");
 
@@ -43,6 +44,9 @@ export default function HomePage() {
                 This is a card content test that would otherwise desrve a Lorem
                 Ipsum but let's just lose time Writing way too long sentences
               </Text>
+              <Checkbox label="This is a checkbox" />
+              <Checkbox label="This is a disabled checkbox" disabled />
+              <Checkbox label="This is a checkbox" error="With an error !" />
             </Stack>
           </Card.Content>
           <Card.TopActions>
