@@ -1,5 +1,5 @@
 import React from "react";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import { classes as cls, color, mergeClasses, View, Text } from "../../tw";
 
@@ -26,19 +26,19 @@ const DEFAULT_CLASSES = {
 
 const TYPE = {
   error: {
-    icon: "alert-circle",
+    icon: "md-alert",
     color: color.red500
   },
   warning: {
-    icon: "alert-triangle",
+    icon: "md-warning",
     color: color.orange500
   },
   info: {
-    icon: "info",
+    icon: "md-information-circle",
     color: color.blue500
   },
   success: {
-    icon: "check-circle",
+    icon: "md-checkmark-circle",
     color: color.green500
   }
 };
@@ -50,7 +50,7 @@ export default function FlashBox({ classes, type, children }) {
 
   return (
     <View style={cls`${styles.container} ${DEFAULT_CLASSES[type].background}`}>
-      <Feather name={icon} color={color} size={16} style={cls`m-r2`} />
+      <Ionicons name={icon} color={color} size={16} style={cls`m-r2`} />
       <View collapsable={false} style={cls`flex-1`}>
         <Text style={cls`${styles.text} ${DEFAULT_CLASSES[type].text}`}>
           {children}

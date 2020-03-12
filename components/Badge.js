@@ -1,11 +1,11 @@
 import React from "react";
 import { TouchableOpacity as Touchable } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import { classes as cls, mergeClasses, View } from "../tw";
 import { Text } from "./typography";
 
-const CloseIcon = props => <Feather name="x" {...props} />;
+const CloseIcon = props => <Ionicons name="md-close" {...props} />;
 
 const DEFAULT_CLASSES = {
   container: cls`rounded-full overflow-hidden p1 flex-row items-center m1`,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import { TouchableOpacity as Touchable } from "react-native";
 
@@ -10,18 +10,20 @@ import Stack from "../layout/Stack";
 const iconStyle = disabled => cls`m1 ${disabled && { opacity: 0.5 }}`;
 
 const Checked = ({ color, disabled }) => (
-  <Feather
-    name="check-square"
+  <Ionicons
+    name="md-checkbox"
     color={color}
     style={iconStyle(disabled)}
     size={22}
   />
 );
 const Unchecked = ({ color, disabled }) => (
-  <Feather name="square" color={color} style={iconStyle(disabled)} size={22} />
-);
-const Intermediate = ({ color, disabled }) => (
-  <Feather name="minus-square" color={color} style={iconStyle(disabled)} />
+  <Ionicons
+    name="md-square-outline"
+    color={color}
+    style={iconStyle(disabled)}
+    size={22}
+  />
 );
 
 Checkbox.defaultProps = {

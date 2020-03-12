@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 // import { ScrollView } from "react-native";
 
 import { classes as cls, View, ScrollView } from "../tw";
@@ -71,12 +71,12 @@ export default function HomePage() {
             <View
               style={cls`bg-white shadow-md rounded-full w-12 h-12 justify-center items-center m-l1`}
             >
-              <Feather name="heart" size={24} />
+              <Ionicons name="md-heart-empty" size={24} />
             </View>
             <View
               style={cls`bg-white shadow-md rounded-full w-12 h-12 justify-center items-center`}
             >
-              <Feather name="clock" size={24} />
+              <Ionicons name="md-clock" size={24} />
             </View>
           </Card.TopActions>
           <Card.Actions>
@@ -98,7 +98,7 @@ export default function HomePage() {
             <View
               style={cls`bg-white shadow-md rounded-full w-12 h-12 justify-center items-center`}
             >
-              <Feather name="heart" size={24} />
+              <Ionicons name="md-heart" size={24} />
             </View>
           </Card.TopActions>
           <Card.Actions>

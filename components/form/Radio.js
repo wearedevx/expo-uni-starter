@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TouchableOpacity as Touchable } from "react-native";
 
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import { classes as cls, getColor, View } from "../../tw";
 import Stack from "../layout/Stack";
@@ -11,10 +11,20 @@ import { Text } from "../typography";
 const iconStyle = disabled => cls`m1 ${{ opacity: disabled ? 0.5 : 1 }}`;
 
 const Unchecked = ({ color, disabled }) => (
-  <Feather name="circle" color={color} style={iconStyle(disabled)} size={22} />
+  <Ionicons
+    name="md-radio-button-off"
+    color={color}
+    style={iconStyle(disabled)}
+    size={22}
+  />
 );
 const Checked = ({ color, disabled }) => (
-  <Feather name="check-circle" color={color} style={iconStyle(disabled)} size={22} />
+  <Ionicons
+    name="md-checkmark-circle"
+    color={color}
+    style={iconStyle(disabled)}
+    size={22}
+  />
 );
 
 function Label({ label, error }) {
