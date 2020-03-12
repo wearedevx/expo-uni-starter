@@ -1,7 +1,7 @@
 import React from "react";
 import { View as RNView, TouchableOpacity as Touchable } from "react-native";
 
-import { classes as cls, mergeClasses, Text } from "../tw";
+import { classes as cls, mergeClasses, Text } from "../../tw";
 
 const DEFAULT_CLASSES = {
   text: cls`text-blue-600 p-t2 p-b4 hover:underline`,

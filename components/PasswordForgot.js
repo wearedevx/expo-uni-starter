@@ -5,10 +5,10 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { classes as cls, View, Text, AnimatedView } from "../tw";
 
-import Input from "./Input";
-import Button from "./Button";
-import Link from "./Link";
-import FlashBox from "./FlashBox";
+import Input from "./form/Input";
+import Button from "./form/Button";
+import Link from "./form/Link";
+import FlashBox from "./form/FlashBox";
 
 PasswordForgotBase.defaultProps = {
   classes: {},

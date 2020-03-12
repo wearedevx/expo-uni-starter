@@ -5,16 +5,22 @@ import {
   ActivityIndicator
 } from "react-native";
 
-import { classes as cls, getColor, mergeClasses, View, Text } from "../tw";
+import { classes as cls, getColor, mergeClasses, View, Text } from "../../tw";
 
 const DEFAULT_CLASSES_PLAIN = {
-  container: cls`rounded p-x1 p-y2 border-1 `,
+  container: cls`rounded p-x4 p-y2 border-1 `,
   text: cls``,
   disabled: cls`opacity-50`
 };
 
 const DEFAULT_CLASSES_OUTLINED = {
-  container: cls` p-x1 p-y2 bg-transparent border rounded border-1`,
+  container: cls` p-x4 p-y2 bg-transparent border rounded border-1`,
+  text: cls``,
+  disabled: cls`opacity-25`
+};
+
+const DEFAULT_CLASSES_INVERT = {
+  container: cls` p-x4 p-y2 bg-transparent rounded hover:bg-gray-100`,
   text: cls``,
   disabled: cls`opacity-25`
 };
@@ -25,6 +31,7 @@ export default function Button({
   loading,
   disabled,
   outlined,
+  invert,
   uppercase,
   children,
   icon,
@@ -40,6 +47,12 @@ export default function Button({
       const text = `text-${color}`;
 
       base.container = cls`${base.container} ${border}`;
+      base.text = cls`${base.text} ${text}`;
+    } else if (invert) {
+      base = mergeClasses(DEFAULT_CLASSES_INVERT, classes);
+      const text = `text-${color}`;
+
+      base.container = cls`${base.container}`;
       base.text = cls`${base.text} ${text}`;
     } else {
       base = mergeClasses(DEFAULT_CLASSES_PLAIN, classes);
@@ -68,15 +81,17 @@ export default function Button({
           styles.container
         } ${disabled && styles.disabled}`}
       >
-        <View
-          style={cls`m-x2 ${{ width: 22, height: 22 }}`}
-          collapsable={false}
-        >
-          {iconPosition === "left" && !loading && icon}
-          {iconPosition === "left" && loading && (
-            <ActivityIndicator color={loaderColor} />
-          )}
-        </View>
+        {(icon || loading) && (
+          <View
+            style={cls`m-x2 ${{ width: 22, height: 22 }}`}
+            collapsable={false}
+          >
+            {iconPosition === "left" && !loading && icon}
+            {iconPosition === "left" && loading && (
+              <ActivityIndicator color={loaderColor} />
+            )}
+          </View>
+        )}
         {typeof children === "string" ? (
           <Text style={styles.text}>
             {uppercase ? children.toLocaleUpperCase() : children}
@@ -84,12 +99,14 @@ export default function Button({
         ) : (
           children
         )}
-        <View
-          style={cls`m-x2 ${{ width: 22, height: 22 }}`}
-          collapsable={false}
-        >
-          {iconPosition === "right" && icon}
-        </View>
+        {(icon || loading) && (
+          <View
+            style={cls`m-x2 ${{ width: 22, height: 22 }}`}
+            collapsable={false}
+          >
+            {iconPosition === "right" && icon}
+          </View>
+        )}
       </RNView>
     </Touchable>
   );

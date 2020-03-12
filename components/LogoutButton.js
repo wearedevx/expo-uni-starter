@@ -2,7 +2,7 @@ import React from "react";
 
 import { useUser } from "../state/stores/user";
 
-import Button from "./Button";
+import Button from "./form/Button";
 
 LogoutButton.defaultProps = {
   outlined: false,

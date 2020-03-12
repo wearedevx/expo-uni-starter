@@ -1,7 +1,7 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 
-import { classes as cls, color, mergeClasses, View, Text } from "../tw";
+import { classes as cls, color, mergeClasses, View, Text } from "../../tw";
 
 const DEFAULT_CLASSES = {
   container: cls`w-full rounded p2 m-y2 flex-row justify-right`,

@@ -1,5 +1,5 @@
 import React from "react";
-import { classes as cls, View, Text, TextInput, color } from "../tw";
+import { classes as cls, View, Text, TextInput, color } from "../../tw";
 
 const DEFAULT_CLASSES = {
   control: cls`m-b4`,
