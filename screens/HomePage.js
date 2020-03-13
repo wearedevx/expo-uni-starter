@@ -14,6 +14,7 @@ import Stack from "../components/layout/Stack";
 import Checkbox from "../components/form/Checkbox";
 import Radio from "../components/form/Radio";
 import IconButton from "../components/form/IconButton";
+import Avatar from "../components/Avatar";
 console.log("Radio", Radio);
 
 const appIcon = require("../assets/icon.png");
@@ -32,6 +33,7 @@ export default function HomePage() {
       <Subtitle>Paramétrage du compte</Subtitle>
       <Text>{token}</Text>
       <LogoutButton />
+      <Avatar image="http://404.com/sdkjsdf.jpg" />
 
       <View style={cls`w-full bg-white`}>
         <Card direction="vertical">
