@@ -57,6 +57,8 @@ export default function App() {
               passwordRenewal={PasswordForgotPage}
             />
           ) : (
+            // That's the main Application navigation
+            // after the user logged in
             <MainNavigator />
           )}
         </NavigationContainer>
