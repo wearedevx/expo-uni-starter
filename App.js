@@ -3,18 +3,18 @@ import { SafeAreaView, ScrollView } from "react-native";
 
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
-import { initialize, useAppLoadingState } from "./state";
-import UserManagementNavigator from "./navigators/user";
-import { useUser } from "./state/stores/user";
+import { initialize, useAppLoadingState } from "state";
+import UserManagementNavigator from "src/navigators/user";
+import { useUser } from "src/stores/user";
 
-import MainNavigator from "./navigators/main";
+import MainNavigator from "src/navigators/main";
 
-import SplashLoader from "./components/SplashLoader";
-import Portal from "./components/portal/Portal";
+import SplashLoader from "components/SplashLoader";
+import Portal from "components/portal/Portal";
 
-import LoginPage from "./screens/LoginPage";
-import SignupPage from "./screens/SignupPage";
-import PasswordForgotPage from "./screens/PasswordForgotPage";
+import LoginPage from "src/screens/LoginPage";
+import SignupPage from "src/screens/SignupPage";
+import PasswordForgotPage from "src/screens/PasswordForgotPage";
 
 const Theme = {
   ...DefaultTheme,

@@ -1,10 +1,9 @@
 import create from "zustand";
-import shallow from "zustand";
 
 import { AsyncStorage } from "react-native";
 
 import { immer } from "./middlewares";
-import storeApis from "./stores";
+import storeApis from "src/stores";
 
 // load state from local/async storage
 async function loadState(key) {
