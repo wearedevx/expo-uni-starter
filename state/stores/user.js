@@ -23,7 +23,6 @@ const userStore = create(
     }))
   )
 );
-console.log("userStore", userStore);
 
 export const useUser = userStore[0];
 export const userApi = userStore[1];

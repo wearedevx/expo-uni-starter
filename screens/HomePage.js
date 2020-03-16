@@ -15,7 +15,8 @@ import Checkbox from "../components/form/Checkbox";
 import Radio from "../components/form/Radio";
 import IconButton from "../components/form/IconButton";
 import Avatar from "../components/Avatar";
-console.log("Radio", Radio);
+
+import Snackbar from "../components/Snackbar";
 
 const appIcon = require("../assets/icon.png");
 
@@ -23,6 +24,9 @@ export default function HomePage() {
   const token = useUser(({ token }) => token);
 
   const [radio, setRadio] = useState("first");
+
+  const [showSnack, setShowSnack] = useState(false);
+  console.log("HomePage -> showSnack", showSnack);
 
   return (
     <ScrollView
@@ -97,10 +101,29 @@ export default function HomePage() {
             <IconButton circled icon="md-heart" color={getColor("red-500")} />
           </Card.TopActions>
           <Card.Actions>
-            <Card.Action>Ok</Card.Action>
+            <Card.Action
+              onPress={() => {
+                console.log("Pressed OK");
+                setShowSnack(true);
+              }}
+            >
+              Ok
+            </Card.Action>
             <Card.Action>Annuler</Card.Action>
           </Card.Actions>
         </Card>
+
+        <Snackbar
+          visible={showSnack}
+          onDismiss={() => setShowSnack(false)}
+          actions={[
+            {
+              text: "undo"
+            }
+          ]}
+        >
+          Hello snackbar
+        </Snackbar>
       </View>
     </ScrollView>
   );

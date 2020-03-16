@@ -7,19 +7,29 @@ export default class PortalConsumer extends React.Component {
     // Delay updating to prevent React from going to infinite loop
     await Promise.resolve();
 
-    this.key = this.props.manager.mount(this.props.children);
+    if (typeof this.props.manager.mount === "function") {
+      this.key = this.props.manager.mount(this.props.children);
+    }
   }
 
   componentDidUpdate() {
     this.checkManager();
+    console.log(
+      "PortalConsumer -> componentDidUpdate ->  this.props.manager.update",
+      this.props.manager.update
+    );
 
-    this.props.manager.update(this.key, this.props.children);
+    if (typeof this.props.manager.update === "function") {
+      this.props.manager.update(this.key, this.props.children);
+    }
   }
 
   componentWillUnmount() {
     this.checkManager();
 
-    this.props.manager.unmount(this.key);
+    if (typeof this.props.manager.unmount === "function") {
+      this.props.manager.unmount(this.key);
+    }
   }
 
   checkManager() {

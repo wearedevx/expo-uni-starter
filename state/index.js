@@ -5,7 +5,6 @@ import { AsyncStorage } from "react-native";
 
 import { immer } from "./middlewares";
 import storeApis from "./stores";
-console.log("storeApis", storeApis);
 
 // load state from local/async storage
 async function loadState(key) {
@@ -38,7 +37,6 @@ const [_appLoadingState, dataStateStoreApi] = create(
 // Start loading store from local/async storage
 // To be used in a useEFfect() hook
 export async function initialize() {
-  console.log("initialize -> dataStateStoreApi", dataStateStoreApi);
   dataStateStoreApi.setState({
     loading: true,
     loaded: false
@@ -46,7 +44,6 @@ export async function initialize() {
 
   const promises = Object.keys(storeApis).map(async key => {
     let loadedData = await loadState(key);
-    console.log("initialize -> key", storeApis, key);
 
     storeApis[key].setState(loadedData);
   });

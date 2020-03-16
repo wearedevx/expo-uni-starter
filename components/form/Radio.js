@@ -95,7 +95,6 @@ function RadioButton({
 
 function RadioGroup({ value, onValueChange, children }) {
   let [currentValue, setCurrentValue] = useState(value);
-  console.log("RadioGroup -> currentValue", currentValue);
 
   useEffect(() => {
     if (currentValue !== value) {
@@ -103,26 +102,15 @@ function RadioGroup({ value, onValueChange, children }) {
     }
   }, [currentValue, value, setCurrentValue]);
 
-  console.log("chilren", children);
-
   return (
     <View>
       {children.map((Child, idx) => {
-        console.log(Child);
-        console.log(
-          "RadioGroup -> Child.props.value === currentValue",
-          Child.props.value,
-          currentValue,
-          Child.props.value === currentValue
-        );
-
         return (
           <Child.type
             {...Child.props}
             key={`${value}_${idx}`}
             checked={Child.props.value === currentValue}
             onCheckChange={() => {
-              console.log("RadioGroup -> Child.props", Child.props);
               setCurrentValue(Child.props.value);
               onValueChange && onValueChange(Child.props.value);
             }}

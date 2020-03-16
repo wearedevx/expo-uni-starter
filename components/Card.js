@@ -74,8 +74,6 @@ export default function Card({ style, direction, children }) {
     getDefault(direction).contentContainer
   } ${contentWidth}`;
 
-  console.log("Card children", children);
-
   return (
     <View style={styles}>
       {Image && <Image.type {...Image.props} direction={direction} />}
@@ -122,12 +120,7 @@ Card.Image.defaultProps = {
 };
 
 Card.Content = function CardContent({ style, direction, children }) {
-  console.log("CardContent direction", direction);
   const styles = cls`${getDefault(direction).content} ${style}`;
-  console.log(
-    "CardContent -> getDefault(direction).content",
-    getDefault(direction).content
-  );
 
   return <View style={styles}>{children}</View>;
 };

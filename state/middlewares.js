@@ -9,10 +9,8 @@ export const immer = config => (set, get, api) =>
 export const persist = (key, config) => (set, get, api) =>
   config(
     args => {
-      console.log(" applying", args);
       set(args);
       const updated = get();
-      console.log(" new state", updated);
 
       AsyncStorage.setItem(key, JSON.stringify(updated));
     },

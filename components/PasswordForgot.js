@@ -38,10 +38,8 @@ export function PasswordForgotBase({
   const [formOpacity] = useState(new Animated.Value(1));
   const [okMessageOpacity] = useState(new Animated.Value(0));
   const [hideForm, setHideform] = useState(false);
-  console.log("hideForm", hideForm);
 
   useEffect(() => {
-    console.log("sent", sent);
     Animated.parallel([
       Animated.timing(formOpacity, {
         toValue: sent ? 0 : 1,

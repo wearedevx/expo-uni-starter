@@ -39,7 +39,6 @@ export function withHistory(Component) {
         window &&
         window.history
       ) {
-        console.log("currentRoute", currentRoute);
         window.history.pushState(
           currentRoute.params,
           currentRoute.name,
@@ -56,10 +55,8 @@ export function withHistory(Component) {
     // refelect the change on react-navigation
     useEffect(() => {
       let listener = _event => {
-        console.log("withHistory -> _event", _event);
         const name = window.location.pathname.substring(1);
 
-        console.log("withHistory -> _navigation", _navigation, name);
         if (_navigation) {
           _goingBack = true;
           _navigation.navigate({ name, params: _event.state });

@@ -21,12 +21,10 @@ export default function Avatar({ image, size, style }) {
   if (typeof size === "string") {
     size = SIZES[size] || SIZES.md;
   }
-  console.log("Avatar -> size", size);
 
   const [imageSource, setImageSource] = useState({
     uri: image
   });
-  console.log("Avatar -> imageSource", imageSource);
 
   return (
     <View style={cls`${style} ${{ width: size, height: size }}`}>

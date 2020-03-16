@@ -1,43 +1,47 @@
 import * as React from "react";
-import PortalConsumer from "./PortalConsumer";
-import PortalHost, { PortalContext } from "./PortalHost";
+import { View, StyleSheet } from "react-native";
 
 /**
- * Portal allows to render a component at a different place in the parent tree.
- * You can use it to render content which should appear above other elements, similar to `Modal`.
- * It requires a [`Portal.Host`](portal-host.html) component to be rendered somewhere in the parent tree.
- *
- * ## Usage
- * ```js
- * import * as React from 'react';
- * import { Portal, Text } from 'react-native-paper';
- *
- * export default class MyComponent extends React.Component {
- *   render() {
- *     return (
- *       <Portal>
- *         <Text>This is rendered at a different place</Text>
- *       </Portal>
- *     );
- *   }
- * }
- * ```
+ * Portal host is the component which actually renders all Portals.
  */
-class Portal extends React.Component {
-  // @component ./PortalHost.tsx
-  static Host = PortalHost;
+export default class PortalManager extends React.PureComponent {
+  state = {
+    portals: []
+  };
+
+  mount = (key, children) => {
+    this.setState(state => ({
+      portals: [...state.portals, { key, children }]
+    }));
+  };
+
+  update = (key, children) =>
+    this.setState(state => ({
+      portals: state.portals.map(item => {
+        if (item.key === key) {
+          return { ...item, children };
+        }
+        return item;
+      })
+    }));
+
+  unmount = key =>
+    this.setState(state => ({
+      portals: state.portals.filter(item => item.key !== key)
+    }));
 
   render() {
-    const { children } = this.props;
-
-    return (
-      <PortalContext.Consumer>
-        {manager => (
-          <PortalConsumer manager={manager}>{children}</PortalConsumer>
-        )}
-      </PortalContext.Consumer>
-    );
+    return this.state.portals.map(({ key, children }) => (
+      <View
+        key={key}
+        collapsable={
+          false /* Need collapsable=false here to clip the elevations, otherwise they appear above sibling components */
+        }
+        pointerEvents="box-none"
+        style={StyleSheet.absoluteFill}
+      >
+        {children}
+      </View>
+    ));
   }
 }
-
-export default Portal;

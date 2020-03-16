@@ -16,7 +16,6 @@ export default function LoginPage() {
   // TODO: Replace this with an actual API call
   const fakeSubmit = useCallback(
     credentials => {
-      console.log("fakeSubmit -> credentials", credentials);
       setLoading(true);
 
       setTimeout(() => {

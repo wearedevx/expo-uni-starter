@@ -62,6 +62,7 @@ export default class PortalHost extends React.Component {
     const key = this.nextKey++;
 
     if (this.manager) {
+      console.log("PortalHost -> this.manager", this.manager);
       this.manager.mount(key, children);
     } else {
       this.queue.push({ type: "mount", key, children });
@@ -72,6 +73,7 @@ export default class PortalHost extends React.Component {
 
   update = (key, children) => {
     if (this.manager) {
+      console.log("PortalHost -> update -> this.manager", this.manager);
       this.manager.update(key, children);
     } else {
       const op = { type: "mount", key, children };
@@ -90,6 +92,7 @@ export default class PortalHost extends React.Component {
 
   unmount = key => {
     if (this.manager) {
+      console.log("PortalHost -> this.manager", this.manager);
       this.manager.unmount(key);
     } else {
       this.queue.push({ type: "unmount", key });
