@@ -65,14 +65,8 @@ export const ScrollView = wrapComponent(RNScrollView, [
 export const Switch = wrapComponent(RNSwitch);
 export const Text = wrapComponent(RNText);
 export const TextInput = wrapComponent(RNTextInput);
-// export const TouchableHighlight = wrapComponent(RNTouchableHighlight);
-// export const TouchableNativeFeedback = wrapComponent(RNTouchableNativeFeedback);
-// export const TouchableOpacity = wrapComponent(RNTouchableOpacity);
-// export const TouchableWithoutFeedback = wrapComponent(
-//   RNTouchableWithoutFeedback
-// );
+
 export const View = wrapComponent(RNView);
-// View.setNativeProps = RNView.setNativeProps;
 
 export const AnimatedImage = wrapComponent(Animated.Image);
 export const AnimatedScrollView = wrapComponent(Animated.ScrollView);
@@ -182,6 +176,15 @@ export function classes(stringParts, ...externalStyles) {
   return styleSheets;
 }
 
+/**
+ * Merges two sets of tw classes. Classes with the same name are overwritten
+ * by the ones from second parameter.
+ *
+ * @param {Object<String, *>} base
+ * @param {Object<String, *>} otherClasses
+ *
+ * @return {Object<String, *>}
+ */
 export function mergeClasses(base = {}, otherClasses = {}) {
   return Object.keys(base).reduce((acc, key) => {
     acc[key] = classes`${base[key]} ${otherClasses[key]}`;
@@ -190,12 +193,24 @@ export function mergeClasses(base = {}, otherClasses = {}) {
   }, {});
 }
 
+/**
+ * Gets the hex-string representation of a tailwind color.
+ *
+ * @param {string} color
+ * @return {string}
+ */
 export function getColor(colorString) {
   const colorProp = kebabCaseToCamelCase(colorString);
 
   return color[colorProp];
 }
 
+/**
+ * @private
+ * Get the Tailwind breakpoint according to the window width
+ *
+ * @return {"xl"|"lg"|"md"|"sm"}
+ */
 function useBreakpoints() {
   const {
     window: { width }
