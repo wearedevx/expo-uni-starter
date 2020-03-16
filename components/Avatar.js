@@ -35,7 +35,6 @@ export default function Avatar({ image, size, style }) {
         resizeMode="cover"
         style={{ width: size, height: size }}
         onError={error => {
-          console.error(error);
           setImageSource(placeHolder);
         }}
       />

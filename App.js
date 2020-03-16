@@ -10,6 +10,7 @@ import { useUser } from "./state/stores/user";
 import MainNavigator from "./navigators/main";
 
 import SplashLoader from "./components/SplashLoader";
+import Portal from "./components/portal/Portal";
 
 import LoginPage from "./screens/LoginPage";
 import SignupPage from "./screens/SignupPage";
@@ -44,20 +45,22 @@ export default function App() {
   if (!appState.loaded) return <SplashLoader />;
 
   return (
-    <SafeAreaView
-      style={{ width: "100%", height: "100%", backgroundColor: "white" }}
-    >
-      <NavigationContainer theme={Theme}>
-        {token == null ? (
-          <UserManagementNavigator
-            signin={LoginPage}
-            signup={SignupPage}
-            passwordRenewal={PasswordForgotPage}
-          />
-        ) : (
-          <MainNavigator />
-        )}
-      </NavigationContainer>
-    </SafeAreaView>
+    <Portal.Host>
+      <SafeAreaView
+        style={{ width: "100%", height: "100%", backgroundColor: "white" }}
+      >
+        <NavigationContainer theme={Theme}>
+          {token == null ? (
+            <UserManagementNavigator
+              signin={LoginPage}
+              signup={SignupPage}
+              passwordRenewal={PasswordForgotPage}
+            />
+          ) : (
+            <MainNavigator />
+          )}
+        </NavigationContainer>
+      </SafeAreaView>
+    </Portal.Host>
   );
 }

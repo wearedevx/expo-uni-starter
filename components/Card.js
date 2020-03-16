@@ -77,7 +77,7 @@ export default function Card({ style, direction, children }) {
   console.log("Card children", children);
 
   return (
-    <View style={styles} collapsable={false}>
+    <View style={styles}>
       {Image && <Image.type {...Image.props} direction={direction} />}
       <View style={cls`flex-column ${contentStyles}`}>
         {Title && <Title.type {...Title.props} direction={direction} />}
@@ -100,11 +100,7 @@ Card.defaultProps = {
 Card.Title = function CardTitle({ style, direction, children }) {
   const styles = cls`${getDefault(direction).title} ${style}`;
 
-  return (
-    <Text style={styles} collapsable={false}>
-      {children}
-    </Text>
-  );
+  return <Text style={styles}>{children}</Text>;
 };
 
 Card.Title.defaultProps = {
@@ -133,11 +129,7 @@ Card.Content = function CardContent({ style, direction, children }) {
     getDefault(direction).content
   );
 
-  return (
-    <View style={styles} collapsable={false}>
-      {children}
-    </View>
-  );
+  return <View style={styles}>{children}</View>;
 };
 
 Card.Content.defaultProps = {
@@ -149,11 +141,7 @@ Card.Content.defaultProps = {
 Card.TopActions = function CardTopActions({ style, direction, children }) {
   const styles = cls`${getDefault(direction).topActions} ${style}`;
 
-  return (
-    <View style={styles} collapsable={false}>
-      {children}
-    </View>
-  );
+  return <View style={styles}>{children}</View>;
 };
 
 Card.TopActions.defaultProps = {
@@ -165,11 +153,7 @@ Card.TopActions.defaultProps = {
 Card.Actions = function CardActions({ style, direction, children }) {
   const styles = cls`${getDefault(direction).actions} ${style}`;
 
-  return (
-    <View style={styles} collapsable={false}>
-      {children}
-    </View>
-  );
+  return <View style={styles}>{children}</View>;
 };
 
 Card.Actions.defaultProps = {

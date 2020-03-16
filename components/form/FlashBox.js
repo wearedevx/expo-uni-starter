@@ -51,7 +51,7 @@ export default function FlashBox({ classes, type, children }) {
   return (
     <View style={cls`${styles.container} ${DEFAULT_CLASSES[type].background}`}>
       <Ionicons name={icon} color={color} size={16} style={cls`m-r2`} />
-      <View collapsable={false} style={cls`flex-1`}>
+      <View style={cls`flex-1`}>
         <Text style={cls`${styles.text} ${DEFAULT_CLASSES[type].text}`}>
           {children}
         </Text>

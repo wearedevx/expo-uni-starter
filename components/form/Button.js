@@ -82,10 +82,7 @@ export default function Button({
         } ${disabled && styles.disabled}`}
       >
         {(icon || loading) && (
-          <View
-            style={cls`m-x2 ${{ width: 22, height: 22 }}`}
-            collapsable={false}
-          >
+          <View style={cls`m-x2 ${{ width: 22, height: 22 }}`}>
             {iconPosition === "left" && !loading && icon}
             {iconPosition === "left" && loading && (
               <ActivityIndicator color={loaderColor} />
@@ -100,10 +97,7 @@ export default function Button({
           children
         )}
         {(icon || loading) && (
-          <View
-            style={cls`m-x2 ${{ width: 22, height: 22 }}`}
-            collapsable={false}
-          >
+          <View style={cls`m-x2 ${{ width: 22, height: 22 }}`}>
             {iconPosition === "right" && icon}
           </View>
         )}
