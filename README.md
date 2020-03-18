@@ -16,6 +16,10 @@ Available targets with no code changes:
 
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
+3. [Usage](#usage)
+4. [External Librairies](#external-librairies)
+5. [Project Structure](#project-structure)
+6. [Documentation](#documentation)
 
 ## Prequisites
 
@@ -85,7 +89,7 @@ TODO: GraphQL/Rest layer ?
 └── tw                      -- tw styling lib
 ```
 
-## Docs
+## Documentation
 
 - [Components]()
 - [Styling with `tw`]()
