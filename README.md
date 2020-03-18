@@ -21,7 +21,7 @@ Available targets with no code changes:
 5. [Project Structure](#project-structure)
 6. [Documentation](#documentation)
 
-## Prequisites
+## Prerequisites
 
 ### Web
 
