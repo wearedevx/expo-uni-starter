@@ -91,6 +91,6 @@ TODO: GraphQL/Rest layer ?
 
 ## Documentation
 
-- [Components]()
-- [Styling with `tw`]()
-- [State Management]()
+- [Components](https://github.com/wearedevx/expo-uni-starter/tree/master/src/components)
+- [Styling with `tw`](https://github.com/wearedevx/expo-uni-starter/tree/master/tw)
+- [State Management](https://github.com/wearedevx/expo-uni-starter/tree/master/state)
