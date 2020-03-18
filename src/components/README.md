@@ -1,6 +1,6 @@
 # Components
 
-A collection of ready made an customizable components to be used
+A collection of ready made and customizable components to be used
 in association with React Native's collection.  
 Check [React Native](https://reactnative.dev/docs/activityindicator) and [Expo](https://docs.expo.io/versions/v36.0.0/sdk/overview/) documentations for components that might be missing (activity indicator, lists, etc...)
 
@@ -136,7 +136,7 @@ Free-form card content can also be built using only `Card.Content`.
 
 ## Portal
 
-Renders its children over everything else in the application. Ideal for modals, snckbars etc.
+Renders its children over everything else in the application. Ideal for modals, snackbars etc.
 
 There can be as many Portals as necessary in an application. They will be rendered on top of each other,
 the last portal rendered will cover the others.
@@ -147,7 +147,7 @@ the last portal rendered will cover the others.
 <Portal>
   {shouldShow && (
     <View>
-      <Text>Something to display on top of everythinh</Text>
+      <Text>Something to display on top of everything</Text>
     </View>
   )}
 </Portal>
@@ -418,7 +418,7 @@ Text Input for use in forms
 Like a button, without background, no uppercase. On web, underlines on hover.  
 Mostly intended for navigation.
 
-#### TODO: Would b nice if it behaved like React Router's Link and the `<a>` tag...
+#### TODO: Would be nice if it behaved like React Router's Link and the `<a>` tag...
 
 #### Props
 
