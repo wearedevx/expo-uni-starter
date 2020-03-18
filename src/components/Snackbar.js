@@ -17,6 +17,18 @@ Snackbar.defaultProps = {
   duration: 5000
 };
 
+/**
+ * A Toast-like, Snackbar component inspired by Google's Material Design.
+ * Uses Portal.
+ *
+ * @param {Object} props
+ * @param {boolean} props.visible         set to `true` to show the Snackbar
+ * @param {() => void} [props.onDismiss]  Called when the Snackbar is dismissed (when it hides)
+ * @param {number} [props.duration=5000]  How long it should remain visible
+ * @param {{text: string, color?: string, onPress?: () => void}[]} [props.actions=[]] Actionable buttons on the right of the Snackbar
+ *
+ * @return {React.ReactNode}
+ */
 export default function Snackbar({
   visible,
   children,

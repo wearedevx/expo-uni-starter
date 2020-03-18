@@ -43,6 +43,14 @@ const TYPE = {
   }
 };
 
+/**
+ * Displays a contained message, informing the user about the result of a form submission.
+ * You can use the `FlashBox.Error`, `FlashBox.Warning`, `FlashBox.Success`, `FlashBox.Info` as shorthands for various types.
+ *
+ * @param {Object} props
+ * @param {string} props.children       FlashBox message
+ * @param {string} [props.type="error"]
+ */
 export default function FlashBox({ classes, type, children }) {
   const styles = mergeClasses(DEFAULT_CLASSES, classes);
 

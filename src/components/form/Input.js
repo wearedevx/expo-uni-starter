@@ -19,6 +19,23 @@ function mergeClasses(classes = {}) {
   }, {});
 }
 
+/**
+ * Text Input for use in forms
+ *
+ * @param {Object} props
+ * @param {string} props.value                    input value
+ * @param {string|null} [props.error=null]        error message to display
+ * @param {string} [props.label=""]               input label
+ * @param {string} [props.placeholder]            placeholder text
+ * @param {(value: string) => void} [props.onValueChange]
+ * @param {() => void} [props.onSubmitEditing]    what to do when user submits the input (like pressing Enter)
+ * @param {boolean} [props.autoFocus=false]       Set the focus on this input on mount
+ * @param {string} [props.type="none"]            input type (see react-native TextInput documentation for `textContentType `)
+ * @param {React.Ref} [props.inputRef]            ref forwarding to interact directly with the underlying ReactNative component
+ * @param {React.ReactNode} [props.after]         a component to display after the Input
+ */
+
+// TODO: Input: Handle numeric entry
 export default function Input({
   classes,
   label,

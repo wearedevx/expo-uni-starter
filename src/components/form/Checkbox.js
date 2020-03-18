@@ -7,8 +7,10 @@ import { classes as cls, mergeClasses, getColor, View } from "tw";
 import { Text } from "../typography";
 import Stack from "../layout/Stack";
 
+//
 const iconStyle = disabled => cls`m1 ${disabled && { opacity: 0.5 }}`;
 
+// Icons
 const Checked = ({ color, disabled }) => (
   <Ionicons
     name="md-checkbox"
@@ -26,16 +28,14 @@ const Unchecked = ({ color, disabled }) => (
   />
 );
 
-Checkbox.defaultProps = {
-  color: "blue-600",
-  checked: false,
-  disabled: false,
-  label: "",
-  labelPosition: "right",
-  onCheckChange: () => {},
-  error: null
-};
-
+/**
+ * Checkbox label component
+ * @param {Object} props
+ * @param {string} props.label Main label text
+ * @param {string} props.error Error text
+ *
+ * @return {React.ReactNode}
+ */
 function Label({ label, error }) {
   return (
     <Stack vertical style={cls`m-t3`}>
@@ -47,6 +47,19 @@ function Label({ label, error }) {
   );
 }
 
+/**
+ * A checkbox component for use in forms
+ *
+ * @param {Object} props
+ * @param {string} props.label
+ * @param {Function} props.onCheckChange
+ * @param {boolean} [props.checked=false]
+ * @param {boolean} [props.disabled=false]
+ * @param {string|null}  [props.error=null]
+ * @param {"left"|"right"|"top"|"bottom"} [props.labelPosition="right"]
+ *
+ * @return {React.ReactNode}
+ */
 export default function Checkbox({
   color,
   checked,
@@ -94,3 +107,13 @@ export default function Checkbox({
     </Touchable>
   );
 }
+
+Checkbox.defaultProps = {
+  color: "blue-600",
+  checked: false,
+  disabled: false,
+  label: "",
+  labelPosition: "right",
+  onCheckChange: () => {},
+  error: null
+};

@@ -33,10 +33,26 @@ function getDefault(direction) {
     : DEFAULT_CLASSES_HORIZONTAL;
 }
 
+/**
+ * Cards are used to group information about subjects and their related actions.
+ *
+ * Use the set of sub-components (`Card.Title`, `Card.Content`, ...) to allow for consistent appearance
+ * accross the application without worrying about content structure.
+ *
+ * Free-form card content can also be built using only `Card.Content`.
+ *
+ * @param {Object} props
+ * @param {"vertical"|"horizontal"} [props.direction="horizontal"]
+ * @param {Array|Object} [props.style]
+ * @param {React.ReactNode|React.ReactNode[]} props.children
+ *
+ * @return {React.ReactNode}
+ */
 export default function Card({ style, direction, children }) {
+  // Style needs to be relative to place TopActions
   const styles = cls`relative ${getDefault(direction).container} ${style}`;
-  const defaultContentStyle = getDefault(direction).contentContainer;
 
+  // Validate Children
   if (
     children.some(child => {
       return ![
@@ -53,6 +69,8 @@ export default function Card({ style, direction, children }) {
     );
   }
 
+  // Impose parent direction to children
+  // TODO: Find a way to avoid re-renders of all children
   children = children.map(child => {
     const Child = child.type;
 
@@ -61,6 +79,7 @@ export default function Card({ style, direction, children }) {
     return <Child {...props} />;
   });
 
+  // Extract children
   const Title = children.find(child => child.type === Card.Title);
   const Content = children.find(child => child.type === Card.Content);
   const Image = children.find(child => child.type === Card.Image);
@@ -95,6 +114,16 @@ Card.defaultProps = {
   children: []
 };
 
+/**
+ * Card Title
+ *
+ * @param {Object} props
+ * @param {string} props.children Text content
+ * @param {Object|Array} [props.style]
+ * @param {"vertical"|"horizontal"} [props.direction] do not set, will be overwritten by Card parent
+ *
+ * @return {React.ReactNode}
+ */
 Card.Title = function CardTitle({ style, direction, children }) {
   const styles = cls`${getDefault(direction).title} ${style}`;
 
@@ -107,6 +136,17 @@ Card.Title.defaultProps = {
   children: []
 };
 
+/**
+ * Card Image
+ *
+ * @param {Object} props
+ * @param {string} props.source Path or Url to the image
+ * @param {Object|Array} [props.style]
+ * @param {"vertical"|"horizontal"} [props.direction] do not set, will be overwritten by Card parent
+ *
+ * @return {React.ReactNode}
+ */
+// TODO: Place holder on error
 Card.Image = function CardImage({ style, direction, source }) {
   const styles = cls`${getDefault(direction).image} ${style}`;
 
@@ -119,6 +159,18 @@ Card.Image.defaultProps = {
   source: imagePlaceholder // TODO: place holder
 };
 
+/**
+ * Card Content.
+ * Only required sub component for cards.
+ * Accepts any content but strings. Allows for free form cards
+ *
+ * @param {Object} props
+ * @param {React.ReactNode|React.ReactNode[]} props.children Card content
+ * @param {Object|Array} [props.style]
+ * @param {"vertical"|"horizontal"} [props.direction] do not set, will be overwritten by Card parent
+ *
+ * @return {React.ReactNode}
+ */
 Card.Content = function CardContent({ style, direction, children }) {
   const styles = cls`${getDefault(direction).content} ${style}`;
 
@@ -131,6 +183,17 @@ Card.Content.defaultProps = {
   children: []
 };
 
+/**
+ * Zone of a card meant for secondary actions such as
+ * display a menu, add to favs, etc
+ *
+ * @param {Object} props
+ * @param {React.ReactNode|React.ReactNode[]} props.children Card content
+ * @param {Object|Array} [props.style]
+ * @param {"vertical"|"horizontal"} [props.direction] do not set, will be overwritten by Card parent
+ *
+ * @return {React.ReactNode}
+ */
 Card.TopActions = function CardTopActions({ style, direction, children }) {
   const styles = cls`${getDefault(direction).topActions} ${style}`;
 
@@ -143,6 +206,18 @@ Card.TopActions.defaultProps = {
   children: []
 };
 
+/**
+ * Zone of a card with primary actions like, Ok/Cancel, Save...
+ * It is recommended to use the `Card.Action` component for consistent
+ * styling
+ *
+ * @param {Object} props
+ * @param {React.ReactNode|React.ReactNode[]} props.children Card content
+ * @param {Object|Array} [props.style]
+ * @param {"vertical"|"horizontal"} [props.direction] do not set, will be overwritten by Card parent
+ *
+ * @return {React.ReactNode}
+ */
 Card.Actions = function CardActions({ style, direction, children }) {
   const styles = cls`${getDefault(direction).actions} ${style}`;
 
@@ -155,6 +230,17 @@ Card.Actions.defaultProps = {
   children: []
 };
 
+/**
+ * Button for primary actions in cards.
+ * Meant to be used in `Card.Actions`
+ *
+ * @param {Object} props
+ * @param {React.ReactNode|React.ReactNode[]} props.children Card content
+ * @param {Object|Array} [props.style]
+ * @param {"vertical"|"horizontal"} [props.direction] do not set, will be overwritten by Card parent
+ *
+ * @return {React.ReactNode}
+ */
 Card.Action = function CardAction({ classes, onPress, children }) {
   return (
     <Button invert classes={classes} onPress={onPress}>

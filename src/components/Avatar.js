@@ -17,6 +17,15 @@ Avatar.defaultProps = {
   style: cls`rounded-full overflow-hidden bg-gray-300 m-2`
 };
 
+/**
+ * Displays a user's avatar. Falls back to `assets/avatar.jpg`.
+ *
+ * @param {Object} props
+ * @param {string} props.image Url to the user's avatar
+ * @param {number|"xs"|"sm"|"md"|"lg"|"xl"} [props.size="md"] Size of the avatar. Can be in pixel
+ * @param {Array|Object} [style] Style overrides
+ *
+ */
 export default function Avatar({ image, size, style }) {
   if (typeof size === "string") {
     size = SIZES[size] || SIZES.md;

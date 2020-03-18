@@ -20,7 +20,7 @@ export const Subtitle = ({ style, children }) => {
   return <TWText style={styles}>{children}</TWText>;
 };
 
-Title.defaultProps = DEFAULT_PROPS;
+Subtitle.defaultProps = DEFAULT_PROPS;
 
 export const Bold = ({ style, children }) => {
   const styles = cls`font-bold text-gray-900 ${style}`;
@@ -28,13 +28,15 @@ export const Bold = ({ style, children }) => {
   return <TWText style={styles}>{children}</TWText>;
 };
 
-Title.defaultProps = DEFAULT_PROPS;
+Bold.defaultProps = DEFAULT_PROPS;
 
 export const Text = ({ style, children }) => {
   const styles = cls`text-gray-900 ${style}`;
 
   return <TWText style={styles}>{children}</TWText>;
 };
+
+Text.defaultProps = DEFAULT_PROPS;
 
 export const Caption = ({ style, children }) => {
   const styles = cls`text-gray-500 text-sm ${style}`;

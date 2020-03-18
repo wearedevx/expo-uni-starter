@@ -25,6 +25,21 @@ const DEFAULT_CLASSES_INVERT = {
   disabled: cls`opacity-25`
 };
 
+/**
+ * Button for use in forms
+ *
+ * @param {Object} props
+ * @param {{ container?: [], text?: [], disabled?: [],}} props.classes
+ * @param {Function} props.onPress
+ * @param {boolean} [props.loading=false]   Draw a loader aside the text
+ * @param {boolean} [props.disabled=false]  Show the button as disabled (no onPress)
+ * @param {boolean} [props.outlined=false]  Border, empty bg, colored text
+ * @param {boolean} [props.invert=false]    No berder nor bg, colored text
+ * @param {boolean} [props.uppercase=true]  Transfor text to all uppercase
+ * @param {React.ReactNode} [props.icon]    An icon to draw along the text
+ * @param {"left"|"right"} [props.iconPosition="left"] where to draw the icon
+ * @param {string} [props.color="blue-600"] Button color
+ */
 export default function Button({
   classes,
   onPress,

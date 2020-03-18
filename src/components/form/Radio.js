@@ -8,6 +8,7 @@ import Stack from "../layout/Stack";
 
 import { Text } from "../typography";
 
+// Icons
 const iconStyle = disabled => cls`m1 ${{ opacity: disabled ? 0.5 : 1 }}`;
 
 const Unchecked = ({ color, disabled }) => (
@@ -27,6 +28,8 @@ const Checked = ({ color, disabled }) => (
   />
 );
 
+// Label
+
 function Label({ label, error }) {
   return (
     <Stack vertical style={cls`m-t3`}>
@@ -37,6 +40,8 @@ function Label({ label, error }) {
     </Stack>
   );
 }
+
+// Main Radion Behaviour
 
 RadioButton.defaultProps = {
   color: "blue-600",
@@ -50,17 +55,15 @@ RadioButton.defaultProps = {
 
 function RadioButton({
   color,
+  value,
   checked,
   disabled,
-  value,
   label,
   labelPosition,
   error,
   onCheckChange
 }) {
-  if (!value) {
-    throw new Error("RadioButton button must have a value");
-  }
+  if (!value) throw new Error("RadioButtons must have a value");
 
   return (
     <Touchable
@@ -92,6 +95,8 @@ function RadioButton({
     </Touchable>
   );
 }
+
+// Radio Group
 
 function RadioGroup({ value, onValueChange, children }) {
   let [currentValue, setCurrentValue] = useState(value);

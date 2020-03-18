@@ -16,6 +16,19 @@ IconButton.defaultProps = {
 const CIRCLED_STYLE = cls`bg-white shadow-md rounded-full justify-center items-center m-l1`;
 const DEFAULT_STYLE = cls`w-12 h-12 justify-center items-center m-l1`;
 
+/**
+ * Button with only an icon in it. Useful for `Card.TopActions`
+ *
+ * @param {Object} props
+ * @param {string} props.icon
+ * @param {number} [props.size=22]
+ * @param {Function} [props.onPress]
+ * @param {string} [props.color="black"]
+ * @param {boolean} [props.disabled=false]
+ * @param {boolean} [props.circled] Wraps the icon in a circle with white background and drop shadow
+ *
+ * @return {React.ReactNode}
+ */
 export default function IconButton({
   icon,
   style,

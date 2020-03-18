@@ -180,10 +180,12 @@ export function classes(stringParts, ...externalStyles) {
  * Merges two sets of tw classes. Classes with the same name are overwritten
  * by the ones from second parameter.
  *
- * @param {Object<String, *>} base
- * @param {Object<String, *>} otherClasses
+ * @template I
+ * @template J
+ * @param {I} base
+ * @param {J} otherClasses
  *
- * @return {Object<String, *>}
+ * @return {I & J}
  */
 export function mergeClasses(base = {}, otherClasses = {}) {
   return Object.keys(base).reduce((acc, key) => {

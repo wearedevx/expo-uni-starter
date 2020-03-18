@@ -25,6 +25,17 @@ Badge.defaultProps = {
   children: ""
 };
 
+/**
+ * Useful component to display tags, mulitple selects, etc.
+ *
+ * @param {Object} props
+ * @param {Array|Object} [classes=[]] tw classes for styling
+ * @param {string} [image] image/icon to display along the badge
+ * @param {string} [imagePosition="left"] where to draw the image (left or right)
+ * @param {string} [color="gray-200"] badge color
+ * @param {function} [onDismiss] if the badge is dismissable, the function the call when the user dismisses it.
+ * @param {string|React.ReactNode|Array} children
+ */
 export default function Badge({
   classes,
   image,
@@ -53,18 +64,34 @@ export default function Badge({
   );
 }
 
+/**
+ * Error badge.
+ * Same props as Badge with a default red color
+ */
 Badge.Error = function BadgeError(props) {
   return <Badge color="red-300" {...props} />;
 };
 
+/**
+ * Warning badge.
+ * Same props as Badge with a default orange color
+ */
 Badge.Warning = function BadgeError(props) {
   return <Badge color="orange-300" {...props} />;
 };
 
+/**
+ * Info badge.
+ * Same props as Badge with a default blue color
+ */
 Badge.Info = function BadgeError(props) {
   return <Badge color="blue-300" {...props} />;
 };
 
+/**
+ * Success badge.
+ * Same props as Badge with a default green color
+ */
 Badge.Success = function BadgeError(props) {
   return <Badge color="green-300" {...props} />;
 };
