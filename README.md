@@ -17,7 +17,7 @@ Available targets with no code changes:
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [External Librairies](#external-librairies)
+4. [External Libraries](#external-libraries)
 5. [Project Structure](#project-structure)
 6. [Documentation](#documentation)
 
