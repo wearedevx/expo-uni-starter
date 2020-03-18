@@ -6,8 +6,8 @@ user data is loaded asynchronously as the application starts.
 
 ## Declaring store
 
-Each store must be declared in `src/stores/`.
-It must export the `useStore` and `api`.
+Each store must be declared in `src/stores/`.  
+It must export the `useStore` and `api`.  
 See `src/stores/user.js` for an example.
 
 ## Persistence
@@ -16,7 +16,7 @@ To persist a store, it must use the `persist` middleware.
 
 To load the persisted data on application load, import the `api` of your store in `state/stores/index.js`, and add it to the exported object.
 
-** Important **  
+**Important**  
 Keys of that object are used to retrieve the data.
 Therefore, if you used the `persist` middleware as `persist("user", config)`,
 `state/stores/index.js` should export an object like:
@@ -35,7 +35,7 @@ Example:
 
 ```js
 import { Text } from "react-native";
-import { useUser } from "state/stores/user";
+import { useUser } from "src/stores/user";
 
 export function Component() {
   const firstname = useUser(({ firstname }) => firstname);

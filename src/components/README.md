@@ -1,7 +1,8 @@
 # Components
 
 A collection of ready made an customizable components to be used
-in association with React Native's collection.
+in association with React Native's collection.  
+Check [React Native](https://reactnative.dev/docs/activityindicator) and [Expo](https://docs.expo.io/versions/v36.0.0/sdk/overview/) documentations for components that might be missing (activity indicator, lists, etc...)
 
 - [Avatar](#avatar)
 - [Badge](#badge)
@@ -19,6 +20,16 @@ in association with React Native's collection.
   - [Link](#link)
   - [Radio](#radio)
 - [Typography](#typography)
+
+## Known to be missing
+
+There is no:
+
+- Date picker
+- Time picker
+- Other form of inputs (email, number, phone, sliders, color picker...)
+- Dropdown (avoiding it is a good practice)
+- Column or Grid layout components (but `tw` can solve this)
 
 ## Avatar
 
