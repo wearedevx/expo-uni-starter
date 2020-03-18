@@ -47,7 +47,7 @@ export default function Component({ opacity }) {
 
 ### Animated Components
 
-`tw` re-exports every component from ReactNative's Animted, with pseudo-classes and breakpoints support.
+`tw` re-exports every component from ReactNative's Animated, with pseudo-classes and breakpoints support.
 
 ```js
 import { classes as cls, AnimatedView, Text } from "tw";
@@ -86,7 +86,7 @@ export default function Component({ opacity }) {
 - AnimatedFlatList
 - AnimatedSectionList
 
-### Refering to tailwind colors
+### Referring to tailwind colors
 
 It is possible to get the hexstring value of a Tailwind color with
 the `getColor()` function
